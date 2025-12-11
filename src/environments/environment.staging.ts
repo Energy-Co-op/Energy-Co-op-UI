@@ -9,7 +9,7 @@ export const environment = {
     state: "xyz"
   },
   api: {
-    baseURL: "https://energy-coop-server-staging.159.65.85.83.sslip.io/api/v1",
+    baseURL: "https://energy-coop-server-staging.172.236.22.158.sslip.io/api/v1",
     energyMixURL: "https://api.carbonintensity.org.uk"
   }
 };
