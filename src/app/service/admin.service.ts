@@ -15,9 +15,11 @@ export class AdminService {
   userService = inject(UserService);
 
   private readonly baseURL: string;
+  private readonly baseURLGFStats: string;
 
   constructor() {
     this.baseURL = environment.api.baseURL + '/admin';
+    this.baseURLGFStats = environment.api.baseURL + '/graigFatha/stats';
   }
 
   setSavingsRate(payload: SavingsRateUpdate): Observable<SavingsRate> {
@@ -29,6 +31,19 @@ export class AdminService {
           'Authorization': `Bearer ${token}`
         });
         return this.http.post<SavingsRate>(`${this.baseURL}/savings-rate`, payload, {headers});
+      })
+    );
+  }
+
+  refreshPerformanceData(startDate: string, endDate: string): Observable<SavingsRate> {
+    return this.userService.getAccessTokenSilently$().pipe(
+      switchMap(token => {
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        });
+        return this.http.get<SavingsRate>(`${this.baseURLGFStats}/logPerformance/${startDate}/${endDate}`, {headers});
       })
     );
   }

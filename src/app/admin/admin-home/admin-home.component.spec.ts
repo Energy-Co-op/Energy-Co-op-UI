@@ -22,7 +22,8 @@ describe('AdminHomeComponent', () => {
     } as any;
 
     mockAdminService = {
-      setSavingsRate: jest.fn()
+      setSavingsRate: jest.fn(),
+      refreshPerformanceData: jest.fn()
     } as any;
 
     await TestBed.configureTestingModule({
@@ -56,6 +57,12 @@ describe('AdminHomeComponent', () => {
     expect(component['savingsRateForm'].get('effectiveDate')).toBeTruthy();
     expect(component['savingsRateForm'].get('savingsRate')).toBeTruthy();
     expect(component['savingsRateForm'].get('savingsRate')).toBeTruthy();
+  });
+
+  it('should initialize form with performanceDataForm entries', () => {
+    expect(component['performanceDataForm'].get('site')).toBeTruthy();
+    expect(component['performanceDataForm'].get('startDate')).toBeTruthy();
+    expect(component['performanceDataForm'].get('endDate')).toBeTruthy();
   });
 
   it('should load sites on init', () => {
@@ -109,6 +116,89 @@ describe('AdminHomeComponent', () => {
       component.onSubmit();
 
       expect(mockAdminService.setSavingsRate).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('performance data form submission', () => {
+    beforeEach(() => {
+      const testStartDate = new Date('2025-01-01');
+      const testEndDate = new Date('2025-01-31');
+      component['performanceDataForm'].patchValue({
+        site: 'Site 1',
+        startDate: testStartDate,
+        endDate: testEndDate
+      });
+    });
+
+    it('should submit performance data form when valid', () => {
+      mockAdminService.refreshPerformanceData = jest.fn().mockReturnValue(of({}));
+      const alertSpy = jest.spyOn(window, 'alert');
+
+      component.onRefreshPerformanceData();
+
+      expect(mockAdminService.refreshPerformanceData).toHaveBeenCalledWith(
+        '2025-01-01',
+        '2025-01-31'
+      );
+      expect(alertSpy).toHaveBeenCalledWith('Performance data refresh initiated successfully');
+      expect(component['performanceDataForm'].value).toEqual({
+        site: null,
+        startDate: null,
+        endDate: null
+      });
+    });
+
+    it('should handle API errors in performance data refresh', () => {
+      mockAdminService.refreshPerformanceData = jest.fn().mockReturnValue(throwError(() => new Error('API Error')));
+      const alertSpy = jest.spyOn(window, 'alert');
+      const consoleSpy = jest.spyOn(console, 'error');
+
+      component.onRefreshPerformanceData();
+
+      expect(alertSpy).toHaveBeenCalledWith('Error refreshing performance data. Please try again.');
+      expect(consoleSpy).toHaveBeenCalled();
+    });
+
+    it('should not submit performance data form if site is invalid', () => {
+      component['performanceDataForm'].get('site').setValue('');
+
+      component.onRefreshPerformanceData();
+
+      expect(mockAdminService.refreshPerformanceData).not.toHaveBeenCalled();
+    });
+
+    it('should not submit performance data form if startDate is invalid', () => {
+      component['performanceDataForm'].get('startDate').setValue('');
+
+      component.onRefreshPerformanceData();
+
+      expect(mockAdminService.refreshPerformanceData).not.toHaveBeenCalled();
+    });
+
+    it('should not submit performance data form if endDate is invalid', () => {
+      component['performanceDataForm'].get('endDate').setValue('');
+
+      component.onRefreshPerformanceData();
+
+      expect(mockAdminService.refreshPerformanceData).not.toHaveBeenCalled();
+    });
+
+    it('should format dates correctly in API call', () => {
+      const testStartDate = new Date('2025-06-15');
+      const testEndDate = new Date('2025-12-25');
+      component['performanceDataForm'].patchValue({
+        site: 'Site 2',
+        startDate: testStartDate,
+        endDate: testEndDate
+      });
+      mockAdminService.refreshPerformanceData = jest.fn().mockReturnValue(of({}));
+
+      component.onRefreshPerformanceData();
+
+      expect(mockAdminService.refreshPerformanceData).toHaveBeenCalledWith(
+        '2025-06-15',
+        '2025-12-25'
+      );
     });
   });
 });

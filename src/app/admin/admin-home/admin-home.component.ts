@@ -7,6 +7,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle
+} from '@angular/material/expansion';
 import {CommonModule} from '@angular/common';
 import {AdminService} from '../../service/admin.service';
 import moment from 'moment';
@@ -23,7 +29,11 @@ import {SavingsRateUpdate} from '../../model/SavingsRateUpdate';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatAccordion,
+    MatExpansionPanelTitle,
+    MatExpansionPanel,
+    MatExpansionPanelHeader
   ],
   templateUrl: './admin-home.component.html',
   styleUrl: './admin-home.component.scss'
@@ -35,12 +45,19 @@ export class AdminHomeComponent implements OnInit {
 
   protected sites: string[] = [];
   protected savingsRateForm: FormGroup;
+  protected performanceDataForm: FormGroup;
 
   constructor() {
     this.savingsRateForm = this.fb.group({
       site: ['', Validators.required],
       effectiveDate: ['', Validators.required],
       savingsRate: ['', [Validators.required, Validators.min(0)]]
+    });
+
+    this.performanceDataForm = this.fb.group({
+      site: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
     });
   }
 
@@ -67,6 +84,26 @@ export class AdminHomeComponent implements OnInit {
         error: (error) => {
           console.error('Error updating savings rate:', error);
           alert('Error updating savings rate. Please try again.');
+        }
+      });
+    }
+  }
+
+  // Only implemented for Graig Fatha currently
+  onRefreshPerformanceData() {
+    if (this.performanceDataForm.valid) {
+      const formValue = this.performanceDataForm.value;
+      const startDate = moment(formValue.startDate).format('YYYY-MM-DD');
+      const endDate = moment(formValue.endDate).format('YYYY-MM-DD');
+
+      this.adminService.refreshPerformanceData(startDate, endDate).subscribe({
+        next: () => {
+          alert('Performance data refresh initiated successfully');
+          this.performanceDataForm.reset();
+        },
+        error: (error) => {
+          console.error('Error refreshing performance data:', error);
+          alert('Error refreshing performance data. Please try again.');
         }
       });
     }

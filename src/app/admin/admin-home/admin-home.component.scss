@@ -1,5 +1,5 @@
 .admin-form-container {
-  max-width: 500px;
+  max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
   background: #fff;
@@ -11,17 +11,27 @@
     color: #333;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  mat-accordion {
+    display: block;
+  }
 
-    mat-form-field {
-      width: 100%;
-    }
+  mat-expansion-panel {
+    margin-bottom: 1rem;
 
-    button {
-      margin-top: 1rem;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 0;
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      button {
+        margin-top: 1rem;
+      }
     }
   }
 }
+

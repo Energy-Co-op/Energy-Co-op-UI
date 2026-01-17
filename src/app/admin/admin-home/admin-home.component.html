@@ -1,32 +1,85 @@
 <div class="admin-form-container">
-  <h2>Set Site Savings Rate</h2>
+  <h2>Admin Settings</h2>
 
-  <form [formGroup]="savingsRateForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <mat-label>Select Site</mat-label>
-      <mat-select formControlName="site">
-        @for (site of sites; track site) {
-          <mat-option [value]="site">
-            {{site}}
-          </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+  <mat-accordion>
+    <!-- Savings Rate Accordion -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Set Site Savings Rate
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-    <mat-form-field>
-      <mat-label>Effective Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="effectiveDate">
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+      <form [formGroup]="savingsRateForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>Select Site</mat-label>
+          <mat-select formControlName="site">
+            @for (site of sites; track site) {
+              <mat-option [value]="site">
+                {{site}}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Savings Rate (kWh)</mat-label>
-      <input matInput type="number" formControlName="savingsRate" min="0" step="0.01">
-    </mat-form-field>
+        <mat-form-field>
+          <mat-label>Effective Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="effectiveDate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="!savingsRateForm.valid">
-      Set Savings Rate
-    </button>
-  </form>
+        <mat-form-field>
+          <mat-label>Savings Rate (kWh)</mat-label>
+          <input matInput type="number" formControlName="savingsRate" min="0" step="0.01">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!savingsRateForm.valid">
+          Set Savings Rate
+        </button>
+      </form>
+    </mat-expansion-panel>
+
+    <!-- Performance Data Refresh Accordion -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Force Performance Data Refresh
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form [formGroup]="performanceDataForm" (ngSubmit)="onRefreshPerformanceData()">
+        <mat-form-field>
+          <mat-label>Select Site</mat-label>
+          <mat-select formControlName="site">
+            @for (site of sites; track site) {
+              <mat-option [value]="site">
+                {{site}}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+          <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>End Date</mat-label>
+          <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+          <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!performanceDataForm.valid">
+          Refresh Performance Data
+        </button>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
+
+
