@@ -18,14 +18,16 @@
         <span>Graig Fatha</span>
       </a>
 
-      <a
-        class="pill"
-        routerLink="/documents"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-      >
-        <span>Documents</span>
-      </a>
+      @if (showDocumentsLink) {
+        <a
+          class="pill"
+          routerLink="/documents"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+        >
+          <span>Documents</span>
+        </a>
+      }
     }
 
     @if (showAdmin) {

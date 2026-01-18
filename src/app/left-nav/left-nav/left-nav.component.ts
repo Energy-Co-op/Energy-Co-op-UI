@@ -25,6 +25,7 @@ export class LeftNavComponent implements OnInit {
   canViewGraigFatha = false;
   canAccessAdmin = false;
   canAccessDirector = false;
+  canViewDocuments = false;
 
   get showGraigFathaLink(): boolean {
     return this.isAuthenticated && this.canViewGraigFatha;
@@ -36,6 +37,10 @@ export class LeftNavComponent implements OnInit {
 
   get showDirector(): boolean {
     return this.isAuthenticated && this.canAccessDirector;
+  }
+
+  get showDocumentsLink(): boolean {
+    return this.isAuthenticated && this.canViewDocuments;
   }
 
   ngOnInit(): void {
@@ -50,6 +55,9 @@ export class LeftNavComponent implements OnInit {
     });
     this.userService.hasPermission$('read:alerts').subscribe(hasPermission => {
       this.canAccessDirector = hasPermission;
+    });
+    this.userService.hasPermission$('read:doc-tax').subscribe(hasPermission => {
+      this.canViewDocuments = hasPermission;
     });
   }
 }

@@ -13,11 +13,13 @@ describe('LeftNavComponent', () => {
   let isAuthenticatedSubject: Subject<boolean>;
   let hasGraigFathaPermissionSubject: Subject<boolean>;
   let hasAdminPermissionSubject: Subject<boolean>;
+  let hasReadDocTaxPermissionSubject: Subject<boolean>;
 
   beforeEach(async () => {
     isAuthenticatedSubject = new Subject<boolean>();
     hasGraigFathaPermissionSubject = new Subject<boolean>();
     hasAdminPermissionSubject = new Subject<boolean>();
+    hasReadDocTaxPermissionSubject = new Subject<boolean>();
 
     mockAuthService = {
       isAuthenticated$: isAuthenticatedSubject.asObservable()
@@ -28,6 +30,8 @@ describe('LeftNavComponent', () => {
           return hasGraigFathaPermissionSubject.asObservable();
         } else if (permission === 'read:admin') {
           return hasAdminPermissionSubject.asObservable();
+        } else if (permission === 'read:doc-tax') {
+          return hasReadDocTaxPermissionSubject.asObservable();
         }
         return new Subject<boolean>().asObservable();
       })
@@ -73,6 +77,13 @@ describe('LeftNavComponent', () => {
       hasAdminPermissionSubject.next(false);
       expect(component.canAccessAdmin).toBe(false);
     });
+
+    it('should set canViewDocuments when userService emits for doc-tax permission', () => {
+      hasReadDocTaxPermissionSubject.next(true);
+      expect(component.canViewDocuments).toBe(true);
+      hasReadDocTaxPermissionSubject.next(false);
+      expect(component.canViewDocuments).toBe(false);
+    });
   });
 
   describe('showGraigFathaLink', () => {
@@ -112,6 +123,26 @@ describe('LeftNavComponent', () => {
       component.isAuthenticated = true;
       component.canAccessAdmin = true;
       expect(component.showAdmin).toBe(true);
+    });
+  });
+
+  describe('showDocumentsLink', () => {
+    it('should return true only if both isAuthenticated and canViewDocuments are true', () => {
+      component.isAuthenticated = false;
+      component.canViewDocuments = false;
+      expect(component.showDocumentsLink).toBe(false);
+
+      component.isAuthenticated = true;
+      component.canViewDocuments = false;
+      expect(component.showDocumentsLink).toBe(false);
+
+      component.isAuthenticated = false;
+      component.canViewDocuments = true;
+      expect(component.showDocumentsLink).toBe(false);
+
+      component.isAuthenticated = true;
+      component.canViewDocuments = true;
+      expect(component.showDocumentsLink).toBe(true);
     });
   });
 });
