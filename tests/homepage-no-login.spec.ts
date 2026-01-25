@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-const expectedTitle = 'Energy Co-op UI';
+const expectedTitle = 'Energy Co-op User Dashboard';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
@@ -86,7 +86,7 @@ test.describe('Content', () => {
   });
 
   test('energy mix graph to exist', async({ page }) => {
-    const canvas = page.locator('app-home>#energyMixChart>canvas');
+    const canvas = page.locator('#energyMixChart>canvas');
 
     await expect(canvas).toBeVisible();
   });

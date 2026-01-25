@@ -1,47 +1,52 @@
 <div class="alerts-container">
-  <h1>Alerts</h1>
-  <p class="subtitle">Last 30 alerts shown for each site.</p>
+  <h1 class="page-title">Director Area</h1>
 
-  @if (isLoading) {
-    <div class="loading-spinner">
-      <mat-spinner></mat-spinner>
-    </div>
-  }
+  <div class="tile" data-title="Alerts">
+    <div class="tile-content">
+      <p class="subtitle">Last 30 alerts shown for each site.</p>
 
-  @if (!isLoading) {
-    <mat-tab-group>
-      @for (site of sites; track site) {
-        <mat-tab [label]="site">
-          <div class="table-container">
-            <mat-form-field>
-              <mat-label>Filter</mat-label>
-              <input matInput (keyup)="applyFilter($event, site)" placeholder="Filter alerts">
-            </mat-form-field>
-
-            <mat-table [dataSource]="alertsBySite[site]" matSort (matSortChange)="sortData($event, site)">
-              <ng-container matColumnDef="createdAt">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Time</mat-header-cell>
-                <mat-cell *matCellDef="let alert">{{alert.createdAt | date:'medium'}}</mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="message">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Message</mat-header-cell>
-                <mat-cell *matCellDef="let alert">{{alert.message}}</mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let _row; columns: displayedColumns;"></mat-row>
-
-              <!-- Row shown when no matching data -->
-              @if (0 === alertsBySite[site].data.length) {
-                <tr class="mat-row">
-                  <td class="mat-cell" colspan="2">No alerts found matching the filter</td>
-                </tr>
-              }
-            </mat-table>
-          </div>
-        </mat-tab>
+      @if (isLoading) {
+        <div class="loading-spinner">
+          <mat-spinner></mat-spinner>
+        </div>
       }
-    </mat-tab-group>
-  }
+
+      @if (!isLoading) {
+        <mat-tab-group>
+          @for (site of sites; track site) {
+            <mat-tab [label]="site">
+              <div class="table-container">
+                <mat-form-field>
+                  <mat-label>Filter</mat-label>
+                  <input matInput (keyup)="applyFilter($event, site)" placeholder="Filter alerts">
+                </mat-form-field>
+
+                <mat-table [dataSource]="alertsBySite[site]" matSort (matSortChange)="sortData($event, site)">
+                  <ng-container matColumnDef="createdAt">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Time</mat-header-cell>
+                    <mat-cell *matCellDef="let alert">{{ alert.createdAt | date:'medium' }}</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="message">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Message</mat-header-cell>
+                    <mat-cell *matCellDef="let alert">{{ alert.message }}</mat-cell>
+                  </ng-container>
+
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let _row; columns: displayedColumns;"></mat-row>
+
+                  <!-- Row shown when no matching data -->
+                  @if (0 === alertsBySite[site].data.length) {
+                    <tr class="mat-row">
+                      <td class="mat-cell" colspan="2">No alerts found matching the filter</td>
+                    </tr>
+                  }
+                </mat-table>
+              </div>
+            </mat-tab>
+          }
+        </mat-tab-group>
+      }
+    </div>
+  </div>
 </div>

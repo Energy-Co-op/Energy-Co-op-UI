@@ -1,34 +1,15 @@
 :host {
-  --bright-blue: oklch(51.01% 0.274 263.83);
-  --electric-violet: oklch(53.18% 0.28 296.97);
-  --french-violet: oklch(47.66% 0.246 305.88);
-  --vivid-pink: oklch(69.02% 0.277 332.77);
-  --hot-red: oklch(61.42% 0.238 15.34);
-  --orange-red: oklch(63.32% 0.24 31.68);
+  --sidebar-blue: #4a7ba7;
+  --sidebar-blue-dark: #3d5f8c;
+  --accent-orange: #ff7043;
+  --accent-orange-light: #ff9800;
+  --white: #ffffff;
+  --light-gray: #f0f0f0;
+  --dark-gray: #2c3e50;
+  --text-gray: #999999;
+  --border-gray: #e0e0e0;
 
-  --gray-900: oklch(19.37% 0.006 300.98);
-  --gray-700: oklch(36.98% 0.014 302.71);
-  --gray-400: oklch(70.9% 0.015 304.04);
-
-  --red-to-pink-to-purple-vertical-gradient: linear-gradient(
-      180deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-  );
-
-  --red-to-pink-to-purple-horizontal-gradient: linear-gradient(
-      90deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-  );
-
-  --pill-accent: var(--bright-blue);
-
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-  "Segoe UI Symbol";
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -36,73 +17,82 @@
 
 section#left-nav {
   display: flex;
-  width: max-content;
-  height: 100%;
-  padding-left: 0;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  width: 180px;
+  min-height: 600px;
+  padding: 30px 20px;
+  background: linear-gradient(to bottom, var(--sidebar-blue) 0%, var(--sidebar-blue-dark) 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  gap: 20px;
+}
+
+div.user-info {
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #FFF;
 }
 
 div.user-info > img {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   cursor: pointer;
+  background-color: var(--dark-gray);
+  object-fit: cover;
+  border: 3px solid var(--white);
+  margin-bottom: 15px;
 }
 
 p {
   margin: 0;
-  color: var(--gray-700);
+  color: var(--white);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .pill-group {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  flex-wrap: wrap;
-  gap: 1.25rem;
+  align-items: center;
+  width: 100%;
+  gap: 0;
 }
 
 .pill {
   display: flex;
   align-items: center;
-  --pill-accent: var(--bright-blue);
-  background: color-mix(in srgb, var(--pill-accent) 5%, transparent);
-  color: var(--pill-accent);
-  padding-inline: 0.75rem;
-  padding-block: 0.375rem;
-  border-radius: 2.75rem;
-  border: 0;
-  transition: background 0.3s ease;
-  font-family: var(--inter-font);
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.4rem;
-  letter-spacing: -0.00875rem;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 15px;
+  color: var(--white);
   text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  background: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
 }
 
 .pill:hover {
-  background: color-mix(in srgb, var(--pill-accent) 15%, transparent);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.pill-group .pill:nth-child(6n + 1) {
-  --pill-accent: var(--bright-blue);
-}
-.pill-group .pill:nth-child(6n + 2) {
-  --pill-accent: var(--french-violet);
-}
-.pill-group .pill:nth-child(6n + 3),
-.pill-group .pill:nth-child(6n + 4),
-.pill-group .pill:nth-child(6n + 5) {
-  --pill-accent: var(--hot-red);
+.pill.active {
+  background-color: var(--accent-orange);
 }
 
-//.pill-group svg {
-//  margin-inline-start: 0.25rem;
-//}
 
 

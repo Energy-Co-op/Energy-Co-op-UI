@@ -1,17 +1,21 @@
 @let user = auth.user$ | async;
 @if (user) {
-    <h2>{{ title }}</h2>
-    <ul>
-      <img src="{{ user.picture }}" alt="User Picture"/>
-      <li><b>Name:</b> {{ user.name }}</li>
-      <li><b>Email:</b> {{ user.email }}</li>
-      <li>
-        <b>Ownerships:</b>
-        <ul>
-          @for (o of user['ownerships'] | keyvalue; track o.key) {
-            <li>{{ o.key }} &rarr; {{ o.value }}</li>
-          }
-        </ul>
-      </li>
-    </ul>
+  <h1 class="page-title">{{ title }}</h1>
+  <div class="tile" data-title="Information">
+    <div class="tile-content">
+      <ul>
+        <img src="{{ user.picture }}" alt="User Picture"/>
+        <li><b>Name:</b> {{ user.name }}</li>
+        <li><b>Email:</b> {{ user.email }}</li>
+        <li>
+          <b>Ownerships:</b>
+          <ul>
+            @for (o of user['ownerships'] | keyvalue; track o.key) {
+              <li>{{ o.key }} &rarr; {{ o.value }}</li>
+            }
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 }

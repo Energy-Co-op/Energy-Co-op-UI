@@ -1,22 +1,15 @@
-<div class="admin-form-container">
-  <h2>Admin Settings</h2>
+<div>
+  <h1 class="page-title">Admin Area</h1>
 
-  <mat-accordion>
-    <!-- Savings Rate Accordion -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Set Site Savings Rate
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
+  <div class="tile" data-title="Set Site Savings Rate">
+    <div class="tile-content">
       <form [formGroup]="savingsRateForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
           <mat-label>Select Site</mat-label>
           <mat-select formControlName="site">
             @for (site of sites; track site) {
               <mat-option [value]="site">
-                {{site}}
+                {{ site }}
               </mat-option>
             }
           </mat-select>
@@ -38,23 +31,19 @@
           Set Savings Rate
         </button>
       </form>
-    </mat-expansion-panel>
+    </div>
+  </div>
 
-    <!-- Performance Data Refresh Accordion -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Force Performance Data Refresh
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
+  <!-- Performance Data Refresh Accordion -->
+  <div class="tile" data-title="Force Performance Data Refresh">
+    <div class="tile-content">
       <form [formGroup]="performanceDataForm" (ngSubmit)="onRefreshPerformanceData()">
         <mat-form-field>
           <mat-label>Select Site</mat-label>
           <mat-select formControlName="site">
             @for (site of sites; track site) {
               <mat-option [value]="site">
-                {{site}}
+                {{ site }}
               </mat-option>
             }
           </mat-select>
@@ -78,8 +67,8 @@
           Refresh Performance Data
         </button>
       </form>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </div>
+  </div>
 </div>
 
 

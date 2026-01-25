@@ -2,33 +2,42 @@
 @if (user) {
   <section id="stats">
     <div>
-      <h1>{{ siteInfo?.name }}
+      <h1 class="page-title">{{ siteInfo?.name }}
         <a href="{{ siteInfo?.mapURL }}}" target="_blank">
           <mat-icon aria-hidden="false" aria-label="Graig Fatha Map" fontIcon="map"></mat-icon>
         </a>
       </h1>
-      <div class="description">{{ siteInfo?.description }}</div>
-      <div class="site-data">
-        <b>
-          <a href="{{ siteInfo?.statsURL }}" target="_blank">
-            Live site data
-          </a>
-        </b>
+      <div class="tile" data-title="Savings">
+        <div class="tile-content">
+          <div class="description">{{ siteInfo?.description }}</div>
+          <div class="site-data">
+            <b>
+              <a href="{{ siteInfo?.statsURL }}" target="_blank">
+                Live site data
+              </a>
+            </b>
+          </div>
+          <div>
+            <b>Your ownership:</b> {{ ownership | number:'1.2-2' }} W
+          </div>
+          <div>
+            <b>Your savings today(*):</b> {{ savingsToday | currency:'GBP':'symbol' }}
+          </div>
+          <div>
+            <b>Your savings last 30 days(*):</b> {{ savingsLast30Days | currency:'GBP':'symbol' }}
+          </div>
+          <div id="savingsDisclaimer">
+            * Savings are estimates only and do not reflect exact amounts which will be paid to you.
+          </div>
+        </div>
       </div>
-      <div>
-        <b>Your ownership:</b> {{ ownership | number:'1.2-2' }} W
-      </div>
-      <div>
-        <b>Your savings today(*):</b> {{ savingsToday | currency:'GBP':'symbol' }}
-      </div>
-      <div>
-        <b>Your savings last 30 days(*):</b> {{ savingsLast30Days | currency:'GBP':'symbol' }}
-      </div>
-      <div id="savingsDisclaimer">
-        * Savings are estimates only and do not reflect exact amounts which will be paid to you.
-      </div>
-      <div id="savingsChart">
-        <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="'bar'"></canvas>
+
+      <div class="tile" data-title="Last 30 days chart">
+        <div class="tile-content">
+          <div id="savingsChart">
+            <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="'bar'"></canvas>
+          </div>
+        </div>
       </div>
     </div>
   </section>

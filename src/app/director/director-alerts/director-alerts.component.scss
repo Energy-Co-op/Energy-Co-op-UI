@@ -1,15 +1,29 @@
 .alerts-container {
   padding: 20px;
 
-  h1 {
-    margin: 0 0 8px 0;
-    font-size: 24px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.87);
+
+  .tile {
+    padding: 0;
+
+    .subtitle {
+      margin: 0;
+      padding: 1rem 1.5rem 0 1.5rem;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    mat-tab-group {
+      margin-top: 1rem;
+
+      ::ng-deep .mat-mdc-tab-label {
+        min-width: auto;
+        padding: 0 1.5rem !important;
+      }
+    }
   }
 
   .subtitle {
-    margin: 0 0 24px 0;
+    margin: 1rem 0 24px 0;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
   }

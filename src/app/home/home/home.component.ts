@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   energyMixService = inject(EnergyMixService);
   decimalPipe = inject(DecimalPipe);
 
-  title = 'Energy Co-op UI';
+  title = 'Energy Co-op User Dashboard';
 
   private pieChartLegendEnabled = false;
   protected pieChartPlugins = [pluginDataLabels];

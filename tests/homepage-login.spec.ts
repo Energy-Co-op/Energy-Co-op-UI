@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-const expectedTitle = 'Energy Co-op UI';
+const expectedTitle = 'Energy Co-op User Dashboard';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');

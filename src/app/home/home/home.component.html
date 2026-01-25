@@ -1,13 +1,21 @@
-<h1>{{ title }}</h1>
-<p>Welcome
-  @let user = auth.user$ | async;
-  @if (user) {
-    {{ user.name }}
-  }
-  to your Energy Co-op User Interface.</p>
-<p> Please select options on the left to navigate.</p>
+<h1 class="page-title">{{ title }}</h1>
+<div class="tile" data-title="Welcome">
+  <div class="tile-content">
+    Welcome
+    @let user = auth.user$ | async;
+    @if (user) {
+      {{ user.name }}
+    }
+    to your Energy Co-op User Interface.
+    <p>Please select options on the left to navigate.</p>
+  </div>
+</div>
 
-<h2>Live Energy Mix for the UK</h2>
-<div id="energyMixChart">
-  <canvas baseChart [data]="pieChartData" [options]="pieChartOptions" [type]="'pie'" [plugins]=pieChartPlugins></canvas>
+<div class="tile" data-title="Live Energy Mix for the UK">
+  <div class="tile-content">
+    <div id="energyMixChart">
+      <canvas baseChart [data]="pieChartData" [options]="pieChartOptions" [type]="'pie'"
+              [plugins]=pieChartPlugins></canvas>
+    </div>
+  </div>
 </div>
