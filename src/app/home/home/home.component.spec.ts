@@ -38,7 +38,7 @@ describe('HomeComponent', () => {
       expect(component).toBeTruthy();
     });
     it('title should be set.', () => {
-      expect(component.title).toEqual('Energy Co-op UI');
+      expect(component.title).toEqual('Energy Co-op User Dashboard');
     });
   });
 
