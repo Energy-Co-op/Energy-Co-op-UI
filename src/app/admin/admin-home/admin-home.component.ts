@@ -29,11 +29,7 @@ import {SavingsRateUpdate} from '../../model/SavingsRateUpdate';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatButtonModule,
-    MatAccordion,
-    MatExpansionPanelTitle,
-    MatExpansionPanel,
-    MatExpansionPanelHeader
+    MatButtonModule
   ],
   templateUrl: './admin-home.component.html',
   styleUrl: './admin-home.component.scss'
