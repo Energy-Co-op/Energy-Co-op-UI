@@ -1,6 +1,7 @@
 :host {
-  display: block;
+  display: flex;
   width: 100%;
+  overflow: hidden;
 
   --sidebar-blue: #4a7ba7;
   --sidebar-blue-dark: #3d5f8c;
@@ -43,12 +44,13 @@ section#content {
 }
 
 section#right-side {
-  flex: 1 1 auto;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
   min-width: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 900px;
   padding: 0;
   background-color: transparent;
   border-radius: 0;
@@ -139,6 +141,7 @@ footer > p#author {
 .social-links > a {
   display: flex;
   width: 2.5rem;
+  color: #000000;
 }
 
 .social-links path {
@@ -148,4 +151,5 @@ footer > p#author {
 
 .social-links a:hover svg path {
   fill: var(--gray-900);
+  color: #0066cc;
 }

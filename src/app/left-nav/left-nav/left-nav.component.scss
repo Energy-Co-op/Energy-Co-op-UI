@@ -17,10 +17,12 @@
 
 section#left-nav {
   display: flex;
+  flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: center;
-  width: 180px;
-  min-height: 600px;
   padding: 30px 20px;
   background: linear-gradient(to bottom, var(--sidebar-blue) 0%, var(--sidebar-blue-dark) 100%);
   border-radius: 12px;
