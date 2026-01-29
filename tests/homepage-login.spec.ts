@@ -76,7 +76,7 @@ test.describe('Social Links', () => {
   });
 
   test('to have GitHub', async ({ page }) => {
-    const link = page.locator('[href*="https://github.com/EM-Creations/Energy-Co-op-UI"]');
+    const link = page.locator('[href*="https://github.com/Energy-Co-op/Energy-Co-op-UI"]');
 
     await expect(link).toBeVisible();
   });

@@ -199,11 +199,11 @@ Distributed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/EM-Creations/Energy-Co-op-UI.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Energy-Co-op/Energy-Co-op-UI.svg?style=for-the-badge
 [contributors-url]: https://github.com/Energy-Co-op/Energy-Co-op-UI/graphs/contributors
-[stars-shield]: https://img.shields.io/github/stars/EM-Creations/Energy-Co-op-UI.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/Energy-Co-op/Energy-Co-op-UI.svg?style=for-the-badge
 [stars-url]: https://github.com/Energy-Co-op/Energy-Co-op-UI/stargazers
-[issues-shield]: https://img.shields.io/github/issues/EM-Creations/Energy-Co-op-UI.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/Energy-Co-op/Energy-Co-op-UI.svg?style=for-the-badge
 [issues-url]: https://github.com/Energy-Co-op/Energy-Co-op-UI/issues
 [license-shield]: https://img.shields.io/badge/Creative%20Commons-000000?style=for-the-badge&logo=creativecommons&logoColor=white
 [license-url]: https://github.com/Energy-Co-op/Energy-Co-op-UI/blob/main/LICENSE
