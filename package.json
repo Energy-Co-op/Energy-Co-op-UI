@@ -55,7 +55,7 @@
     "@angular/compiler-cli": "^20.3.9",
     "@babel/core": "^7.28.5",
     "@babel/plugin-proposal-decorators": "^7.28.0",
-    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-env": "^7.29.0",
     "@babel/preset-typescript": "^7.28.5",
     "@jest/globals": "^30.0.2",
     "@playwright/test": "^1.57.0",
